@@ -17,32 +17,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/home">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home/profile/<%= id %>">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home/keranjang">Keranjang</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home/logout">Log Out</a>
-          </li>
-          <div style="margin-left:200px ;">
-            <li class="nav-item">
-              <h4>Saldo : <%= saldo %></h4>
-            </li>
-            
-          </div>
         </ul>
-        <form action="" method="get" style="margin-right:10px ;">
-          <select name="sort" id="" style="margin-right:10px ;">
-            <option value="" selected disabled>Sort By Price </option>
-            <option value="Murah">Lowest Price</option>
-            <option value="Mahal">Highest Price</option>
-          </select>
-          <button>Sort by Price</button>
-        </form>
-
         <form method="get" class="d-flex" role="search">
+          <input type="hidden" name="id" value="" />
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -51,7 +28,7 @@
     </div>
   </nav>
 
-    <h2 style="margin-left:10px;">Pick your Food</h2>
+    <h2 style="margin-left:20px ;"> All items you buy : </h2>
     <div class="row col-sm-12" style="margin-left: 20px;">
         <% data.forEach(el => { %>
           <div class="card" style="width: 18rem; margin: 20px;">
@@ -60,10 +37,7 @@
               <h5 class="card-title"><%= el.name %></h5>
               <p class="card-text"><%= el.description %></p>
               <p class="card-text"><%= el.price %></p>
-              <a href="/home/buy/<%= id %>/<%= el.id %>/" class="stretched-link"></a>
-              <% if(el.UserId){ %>
-                <img src="https://www.pngall.com/wp-content/uploads/5/Green-Checklist-PNG-Image.png" style="width:50px" height="50px">
-              <% } %>  
+              <a href="/home/undo/<%= id %>/<%= el.id %>" class="stretched-link"></a>
             </div>
           </div>
         <% }) %>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Home</title>
+        <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/0/00/Schutzstaffel_Abzeichen.svg">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+      </head>
+<%- include('./navbar') %> 
+<body style="margin-left:10px ;">
+    <form action="" method="post">
+        Name : <br>
+        <input type="text" name="name" value="<%= data.name %>"><br><br>
+
+        Address : <br>
+        <input type="text" name="address" value="<%= data.address %>"><br><br>
+
+        Phone Number : <br>
+        <input type="text" name="phoneNumber" value="<%= data.phoneNumber %>"><br><br>
+
+        Email : <br>
+        <input type="text" name="email" value="<%= data.email %>"><br><br>
+
+        Gender : <br>
+        <select name="gender">
+            <option value="Male" <%= data.gender === "Male"? 'selected':'' %>>Male</option>
+            <option value="Female" <%= data.gender === "Female"? 'selected':'' %>>Female</option>
+        </select><br><br>
+
+        <button type="submit">Submit Edit</button>
+    </form>
+</body>
+</html>
