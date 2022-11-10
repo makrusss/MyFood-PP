@@ -11,30 +11,44 @@
 </head>
 
 <body>
-    <h1>INI REGISTER FORM</h1>
-                <form method="post">
-                    <label>Username</label><br>
-                    <input type="text" name="username"><br>
-                    <label>Password</label><br>
-                    <input type="text" name="password"><br>
-                    <label>Full Name</label><br>
-                    <input type="text" name="name"><br>
-                    <label>Email</label><br>
-                    <input type="email" name="email"><br>
-                    <label>Adrress</label><br>
-                    <input type="text" name="address"><br>
-                    <label>Phone Number</label><br>
-                    <input type="number" name="phoneNumber"><br>
-                    <p>Gender:</p>
-                      <input type="radio" name="gender" value="Male">
-                      <label>Male</label><br>
-                      <input type="radio" name="gender" value="Female">
-                      <label>Female</label><br>
-                    <label>Saldo</label><br>
-                    <input type="number" name="saldo"><br><br>
+    <div style="background-color: whitesmoke">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div>
+                <% if (errors) { %>
+                    <% errors.split(",").forEach(element=> { %>
+                        <div style="color:red ;">
+                            <%= element %>
+                        </div>
+                        <% }); %>
+                            <% } %>
+            </div>
+                <h3>Registation Form</h3>
+                <label>Username</label><br>
+                <input type="text" name="username"><br>
+                <label>Password</label><br>
+                <input type="text" name="password"><br>
+                <label>Full Name</label><br>
+                <input type="text" name="name"><br>
+                <label>Email</label><br>
+                <input type="email" name="email"><br>
+                <label>Addrress</label><br>
+                <input type="text" name="address"><br>
+                <label>Phone Number</label><br>
+                <input type="number" name="phoneNumber"><br>
+                <p>Gender:</p>
+                <input type="radio" name="gender" value="Male">
+                <label>Male</label><br>
+                <input type="radio" name="gender" value="Female">
+                <label>Female</label><br>
+                <label>Saldo</label><br>
+                <input type="number" name="saldo"><br><br>
 
-                    <input type="submit">
-                </form>
+                <button type="submit">Submit</button>
+                <a href="/login"><button>Login</button></a>
+                <form method="post">
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
