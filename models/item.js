@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       Item.belongsTo(models.User)
       Item.hasMany(models.Category)
     }
+
+    static totalPrice(data){
+      let totalPrice = 0 
+      data.forEach(el => {
+        totalPrice += el.price
+      });
+      return totalPrice
+    }
   }
   Item.init({
     name: DataTypes.STRING,
