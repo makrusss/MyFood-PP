@@ -1,7 +1,19 @@
 const express = require('express')
-const Controller = require('../controllers/login')
+const UserController = require('../controllers/login')
 const router = express.Router()
 
-router.use('/home', Controller.renderLogin)
+router.get('/', UserController.getLogin)
+
+router.post('/', UserController.postLogin)
+
+router.get('/register', UserController.getRegisterForm)
+
+router.post('/register', UserController.postRegisterForm)
+
+
+// Jika udah logout harusnya gabisa masuk ke home lagix
+
+
+
 
 module.exports = router  

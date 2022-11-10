@@ -14,13 +14,94 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Profile.init({
-    name: DataTypes.STRING,
-    address: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING,
-    email: DataTypes.STRING,
-    gender: DataTypes.STRING,
-    saldo: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        notNull: {
+          args :true,
+          msg : "Name cannot be empty"
+        },
+        notEmpty :{
+          args :true,
+          msg : "Name cannot be empty"
+        }
+      }
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        notNull: {
+          args :true,
+          msg : "Adress cannot be empty"
+        },
+        notEmpty :{
+          args :true,
+          msg : "Adress cannot be empty"
+        }
+      }
+    },
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        notNull: {
+          args :true,
+          msg : "Phone Number cannot be empty"
+        },
+        notEmpty :{
+          args :true,
+          msg : "Phone Number cannot be empty"
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        notNull: {
+          args :true,
+          msg : "Email cannot be empty"
+        },
+        notEmpty :{
+          args :true,
+          msg : "Email cannot be empty"
+        }
+      }
+    },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        notNull: {
+          args :true,
+          msg : "Gender cannot be empty"
+        },
+        notEmpty :{
+          args :true,
+          msg : "Gender cannot be empty"
+        }
+      }
+    },
+    saldo: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate:{
+        notNull: {
+          args :true,
+          msg : "Balance cannot be empty"
+        },
+        notEmpty :{
+          args :true,
+          msg : "Balance cannot be empty"
+        }
+      }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }
   }, {
     sequelize,
     modelName: 'Profile',
