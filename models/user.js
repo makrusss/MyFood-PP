@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty :{
           args :true,
           msg : "Username cannot be empty"
-        }
-      }
+        },
+      },
     },
     password: {
       type: DataTypes.STRING,
@@ -43,14 +43,13 @@ module.exports = (sequelize, DataTypes) => {
           msg : "Password cannot be empty"
         },
         len:{
-          args :[8,16],
-          msg : "Password must be 8 - 16 character"
+          args :[8,32],
+          msg : "Password must be 8 - 32 character"
         }
       }
     },
     role: {
       type :DataTypes.STRING,
-      defaultValue: "customer"
     }
   }, {
     hooks: {
@@ -58,6 +57,7 @@ module.exports = (sequelize, DataTypes) => {
       const salt = bcrypt.genSaltSync(8);
       const hash = bcrypt.hashSync(instance.password, salt);
       instance.password = hash
+      instance.role = 'customer'
       }
     },
     sequelize,
