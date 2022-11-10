@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
           args :true,
           msg : "Adress cannot be empty"
         }
-      }
+      },
     },
     phoneNumber: {
       type: DataTypes.STRING,
@@ -72,16 +72,17 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
-        notNull: {
-          args :true,
-          msg : "Email cannot be empty"
+        validate:{
+            notEmpty:{
+                args:true,
+                msg:"Email-id required"
+            },
+            isEmail:{
+                args:true,
+                msg:'Valid email-id required'
+            }
         },
-        notEmpty :{
-          args :true,
-          msg : "Email cannot be empty"
-        }
-      }
+       unique: { msg: 'Email address already in use!' }
     },
     gender: {
       type: DataTypes.STRING,

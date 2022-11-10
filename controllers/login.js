@@ -6,10 +6,10 @@ class UserController {
         res.render('login', { error })
     }
     static getRegisterForm(req, res) {
-        res.render('registerform')
+        const errors = req.query.errors
+        res.render('registerform', { errors })
     }
     static postRegisterForm(req, res) {
-        // console.log(req.body);
         const {
             username,
             password,
@@ -20,14 +20,12 @@ class UserController {
             gender,
             saldo
         } = req.body
-        let userId
         User.create({
             username: username,
             password: password
         })
             .then((dataUser) => {
-                userId = User.id
-                Profile.create({
+                return Profile.create({
                     name: name,
                     address: address,
                     phoneNumber: phoneNumber,
@@ -36,10 +34,19 @@ class UserController {
                     saldo: saldo,
                     UserId: dataUser.id
                 })
+            })
+            .then((_) => {
                 res.redirect('/login')
             })
             .catch((err) => {
-                res.send(err)
+                if (err.name == 'SequelizeValidationError') {
+                    let errors = err.errors.map(el => {
+                        return el.message
+                    })
+                    res.redirect(`/login/register?errors=${errors}`)
+                } else {
+                    res.send(err)
+                }
             });
     }
     static postLogin(req, res) {
@@ -60,7 +67,7 @@ class UserController {
                         const error = "Invalid Username / Password"
                         res.redirect(`/login?error=${error}`)
                     }
-                } 
+                }
                 else {
                     const error = "Username / Password not registered yet"
                     return res.redirect(`/login?error=${error}`)
