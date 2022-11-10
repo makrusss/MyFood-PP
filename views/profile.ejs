@@ -8,7 +8,20 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
       </head>
 <body>
-  <%- include('./navbar') %> 
+ 
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand"><img style="width: 50px; height: 50px;" src="https://play-lh.googleusercontent.com/uibMWvyN5Z6wY0_U5b_7wzlItg0LFtyAwmbkK730opFFV4HeAJ_9k4ywLfHGg9jMfwA"></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/home?id=<%= data.id %>">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
     <h2 style="margin-left:10px;">PROFILE PAGE</h2>
     <div class="row col-sm-12" style="margin-left: 20px;">
           <div class="card" style="width: 18rem; margin: 20px;">
@@ -18,6 +31,7 @@
               <p class="card-text"><%= data.phoneNumber %></p>
               <p class="card-text"><%= data.email %></p>
               <p class="card-text"><%= data.gender %></p>
+              <p class="card-text">SALDO : <%= data.saldo %></p>
               <button><a href="/home/profile/<%= data.id %>/edit">EDIT</a></button>
             </div>
           </div>

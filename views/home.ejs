@@ -15,22 +15,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            <a class="nav-link active" aria-current="page" href="/home?id=<%= id %>">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/home/profile/<%= id %>">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home/keranjang">Keranjang</a>
+            <a class="nav-link active" aria-current="page" href="/home/keranjang/<%= id %>">Keranjang</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/home/logout">Log Out</a>
           </li>
           <div style="margin-left:200px ;">
             <li class="nav-item">
+              <h6>Hello, <%= mr.genderName %> :)</h6>
               <h4>Saldo : <%= saldo %></h4>
             </li>
-            
           </div>
         </ul>
         <form action="" method="get" style="margin-right:10px ;">
@@ -62,7 +62,7 @@
               <p class="card-text"><%= el.price %></p>
               <a href="/home/buy/<%= id %>/<%= el.id %>/" class="stretched-link"></a>
               <% if(el.UserId){ %>
-                <img src="https://www.pngall.com/wp-content/uploads/5/Green-Checklist-PNG-Image.png" style="width:50px" height="50px">
+                <img src="https://www.pngall.com/wp-content/uploads/5/Checklist-Logo.png" style="width:50px" height="50px">
               <% } %>  
             </div>
           </div>

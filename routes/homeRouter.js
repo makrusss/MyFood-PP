@@ -1,14 +1,13 @@
 const express = require('express')
 const Controller = require('../controllers/home')
 const UserController = require('../controllers/login')
-
 const router = express.Router()
 
 router.get('/', Controller.renderHome) //ada params disini
 
-router.get('/keranjang', Controller.keranjang)
 router.get('/logout', UserController.getLogout)
 
+router.get('/keranjang/:UserId', Controller.keranjang)
 router.get('/profile/:UserId', Controller.renderProfile)
 router.get('/profile/:UserId/edit', Controller.renderEdit)
 router.post('/profile/:UserId/edit/', Controller.edit)

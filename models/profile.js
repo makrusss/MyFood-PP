@@ -12,6 +12,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Profile.belongsTo(models.User)
     }
+    static moneyChanges(totalPrice){
+      let x = this.saldo - totalPrice 
+      return x
+    }
+
+    get genderName(){
+      if(this.gender === 'Male'){
+        return this.gender = `Mr.${this.name}`
+      }
+      if(this.gender === 'Female'){
+        return this.gender = `Mrs.${this.name}`
+      }
+    }
   }
   Profile.init({
     name: {

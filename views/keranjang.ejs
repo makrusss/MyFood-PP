@@ -15,15 +15,27 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            <a class="nav-link active" aria-current="page" href="/home?id=<%= UserId %>">Home</a>
           </li>
+          <div style="margin-left:400px ;">
+            <li class="nav-item">
+              <h4>Saldo : <%= saldo %></h4>
+            </li>
+            <li class="nav-item">
+              <h4>Total Belanja : <%= totalPrice %></h4>
+            </li>
+          </div>
+          <div style="margin-left:40px;margin-top:15px ;">
+            <li class="nav-item">
+                <button><a href="/home/keranjang/1?checkout=<%= moneyChanges %>">CHECKOUT</a></button>
+            </li>
+            <li class="nav-item">
+             <% if(output){ %>
+              <%= output %> 
+             <% } %> 
+          </li>
+          </div>
         </ul>
-        <form method="get" class="d-flex" role="search">
-          <input type="hidden" name="id" value="" />
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        <!-- <button class="btn btn-outline-danger" type="submit">Log Out</button> -->
       </div>
     </div>
   </nav>
@@ -37,7 +49,7 @@
               <h5 class="card-title"><%= el.name %></h5>
               <p class="card-text"><%= el.description %></p>
               <p class="card-text"><%= el.price %></p>
-              <a href="/home/undo/<%= id %>/<%= el.id %>" class="stretched-link"></a>
+              <a href="/home/undo/<%= UserId %>/<%= el.id %>" class="stretched-link"></a>
             </div>
           </div>
         <% }) %>
