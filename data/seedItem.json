@@ -1,0 +1,91 @@
+[
+    {
+        "id": 1,
+        "name": "Sate",
+        "description": "Sate paling enak sekali ya",
+        "price": 20000,
+        "imgurl": "https://www.bango.co.id/gfx/recipes/temp_thumb-1573167660.jpg",
+        "CategoryId": 1
+        
+    },{
+        "id": 2,
+        "name": "Nasi Goreng",
+        "description": "Nasi Goreng paling renyah tanpa micin",
+        "price": 35000,
+        "imgurl": "https://awsimages.detik.net.id/community/media/visual/2022/09/17/resep-nasi-goreng-udang-kemangi_43.jpeg?w=1200",
+        "CategoryId": 1
+        
+    },{
+        "id": 3,
+        "name": "Roti",
+        "description": "Paling roti banget ini",
+        "price": 10000,
+        "imgurl": "https://jessicabakery.com/wp-content/uploads/2021/08/Resep-Roti-Tawar-Lembut-scaled.jpg",
+        "CategoryId": 1
+        
+    },{
+        "id": 4,
+        "name": "Red Velvet",
+        "description": "Paling velvet!!!",
+        "price": 38000,
+        "imgurl": "https://img.kurio.network/Nux6eAYg7QdcJrAN_asLGqAIvmU=/1200x1200/filters:quality(80)/https://kurio-img.kurioapps.com/20/08/12/b70635e6-787b-4b38-b83b-ed6d9bde8096.jpg",
+        "CategoryId": 1
+        
+    },{
+        "id": 5,
+        "name": "Kentang Goreng",
+        "description": "Paling Standart tapi ok",
+        "price": 20000,
+        "imgurl": "https://img.okezone.com/content/2018/09/24/298/1955001/produksi-menurun-kentang-goreng-di-negara-eropa-akan-lebih-pendek-seinci-flB6rtoxHY.jpg",
+        "CategoryId": 1
+        
+    },{
+        "id": 6,
+        "name": "Sosis",
+        "description": "Sosis paling panjang yaa",
+        "price": 25000,
+        "imgurl": "https://awsimages.detik.net.id/community/media/visual/2021/12/26/resep-sosis-panggang-bumbu-rempah-1_43.jpeg?w=1200",
+        "CategoryId": 1
+        
+    },{
+        "id": 7,
+        "name": "Bakso",
+        "description": "Bakso depan futsal hacktiv8",
+        "price": 16000,
+        "imgurl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW59NnOrtyCWMZVmR__G-ADv8uv6sMcT4yDg&usqp=CAU",
+        "CategoryId": 1
+        
+    },{
+        "id": 8,
+        "name": "Bakwan",
+        "description": "Bakwan dari pecel sebelah",
+        "price": 5000,
+        "imgurl": "https://www.astronauts.id/blog/wp-content/uploads/2022/07/Resep-Bakwan-Sayur-Renyah-dan-Nikmat.jpg",
+        "CategoryId": 1
+        
+    },{
+        "id": 9,
+        "name": "Ice Tea",
+        "description": "Es teh paling teh dan dingin",
+        "price": 8000,
+        "imgurl": "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2021/06/15093247/Ketahui-Fakta-Es-Teh-Manis.jpg",
+        "CategoryId": 2
+        
+    },{
+        "id": 10,
+        "name": "Cocktail",
+        "description": "Cocktail paling seger",
+        "price": 40000,
+        "imgurl": "https://primaberita.com/wp-content/uploads/2021/01/koktail.jpg",
+        "CategoryId": 2
+        
+    },{
+        "id": 11,
+        "name": "Air Mineral",
+        "description": "Air mineral BPA Free",
+        "price": 5000,
+        "imgurl": "https://images.tokopedia.net/img/cache/500-square/product-1/2019/6/11/1874896/1874896_754d1c3c-4c7a-4dd0-802c-6704abde7c94_554_554.jpg",
+        "CategoryId": 2
+        
+    }
+]
