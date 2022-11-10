@@ -9,6 +9,18 @@ router.get('/', (req,res)=>{
 })
 
 router.use('/login', login)
+
+router.use(function(req, res, next){
+    console.log(req.session);
+    if(!req.session.userId){
+        const error = "Please Login First!"
+        res.redirect(`/login?error=${error}`)
+    } else {
+        next()
+    }
+
+})
+
 router.use('/home', homePage)
 
 module.exports = router  
