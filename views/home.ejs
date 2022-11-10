@@ -17,12 +17,16 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/home?id=<%= id %>">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home/profile/<%= id %>">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home/keranjang/<%= id %>">Keranjang</a>
-          </li>
+
+          <% if(admin.role === "customer"){ %>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/home/profile/<%= id %>">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/home/keranjang/<%= id %>">Keranjang</a>
+            </li>
+          <% } %> 
+
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/home/logout">Log Out</a>
           </li>
@@ -30,6 +34,12 @@
             <li class="nav-item">
               <h6>Hello, <%= mr.genderName %> :)</h6>
               <h4>Saldo : <%= saldo %></h4>
+            </li>
+          </div>
+          <div style="margin-left:60px ;">
+            <li class="nav-item">
+              <a href="/home?filter=Makanan"><button>Makanan</button></a><br>
+              <a href="/home?filter=Minuman"><button>Minuman</button></a>
             </li>
           </div>
         </ul>
@@ -60,7 +70,13 @@
               <h5 class="card-title"><%= el.name %></h5>
               <p class="card-text"><%= el.description %></p>
               <p class="card-text"><%= el.price %></p>
-              <a href="/home/buy/<%= id %>/<%= el.id %>/" class="stretched-link"></a>
+
+              <% if(admin.role === "admin"){ %>
+                <button><a href="/home/delete/<%= admin.id %>/<%= el.id %>">DELETE</a></button>
+              <% } else { %>
+                <a href="/home/buy/<%= id %>/<%= el.id %>/" class="stretched-link"></a>
+             <% } %> 
+
               <% if(el.UserId){ %>
                 <img src="https://www.pngall.com/wp-content/uploads/5/Checklist-Logo.png" style="width:50px" height="50px">
               <% } %>  

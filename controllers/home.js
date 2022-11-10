@@ -1,9 +1,11 @@
 const { Item, Profile, User } = require('../models/index')
-const { Op } = require("sequelize");
+const { Op } = require("sequelize")
+const qrcode = require("qrcode")
+const { toCurrency } = require('../helper/index')
 
 class Controller {
     static renderHome(req,res){
-        const { sort,search,id } = req.query
+        const { filter,sort,search,id } = req.query
         let UserId = id
         let role  
         let options = {
@@ -12,9 +14,12 @@ class Controller {
         }
         if(sort==="Murah") options.order=[['price','ASC']]
         if(sort==="Mahal") options.order=[['price','DESC']]
+        if(filter==="Makanan") options.where = { CategoryId: {[Op.eq]: 1} }
+        if(filter==="Minuman") options.where = { CategoryId: {[Op.eq]: 2} }
         if(search) options.where = { name: {[Op.iLike]: `%${search}%`} }
 
         let mr
+        let admin
         let saldo 
         Profile.findOne({
             where:{
@@ -23,11 +28,15 @@ class Controller {
         })
         .then(profile=>{
             mr = profile
-            saldo = profile.saldo
+            saldo = toCurrency(profile.saldo)
+            return User.findOne({where:{id:req.session.userId}})
+        })
+        .then((User)=>{
+            admin = User
             return Item.findAll(options)
         })
         .then(data=>{
-            res.render('home', { mr, data , id:req.session.userId , role,saldo})
+            res.render('home', { mr, data ,admin, id:req.session.userId , role, saldo})
         })
         .catch(err=>{
             res.send(err)
@@ -35,14 +44,28 @@ class Controller {
     }
 
     static renderProfile(req,res){
-        const { UserId } = req.params
-        Profile.findOne({
-            where:{
-                id:req.session.userId
+        const {UserId} = req.params
+        const input_text = `http://localhost:3000/home/profile/${UserId}`
+        let data
+        qrcode.toDataURL(input_text,(err,src)=>{
+            if (err) res.send("Something went wrong!!")
+            else {
+                Profile.findOne({
+                    where:{
+                        id:req.session.userId
+                    }
+                })
+                .then(findOne=>{
+                    data = findOne
+                    return Profile.findAll()
+                })
+                .then((all)=>{
+                    res.render('profile',{ all, qr_code: src, data })
+                })
+                .catch(err=>{
+                    res.send(err)
+                })
             }
-        })
-        .then(data=>{
-            res.render('profile',{ data })
         })
     }
 
@@ -151,6 +174,45 @@ class Controller {
         })
         .then(()=>{
             res.redirect(`/home/keranjang/${req.session.userId}`)
+        })
+        .catch(err=>{
+            res.send(err)
+        })
+    }
+
+    static delete(req,res){
+       const {UserId,ItemId} = req.params
+       Item.destroy({
+        where:{
+            id:ItemId
+        }
+       })
+       .then(()=>{
+        res.redirect(`/home?id=${UserId}`)
+       })
+       .catch(err=>{
+        res.send(err)
+       })
+    }
+
+    static transfer(req,res){
+        const {transferTo,nominal} = req.query
+        let out
+        let intake
+        Profile.findOne({where:{id:req.session.userId}})
+        .then(data=>{
+            out = data.saldo - +nominal
+            return Profile.update({saldo:out},{where:{id:req.session.userId}})
+        })
+        .then(()=>{
+            return Profile.findOne({where:{id:transferTo}})
+        })
+        .then((taken)=>{
+            intake = taken.saldo + +nominal
+            return Profile.update({saldo:intake},{where:{id:transferTo}})
+        })
+        .then(()=>{
+            res.redirect(`/home/profile/${req.session.userId}`)
         })
         .catch(err=>{
             res.send(err)
