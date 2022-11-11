@@ -19,45 +19,49 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
+      unique: {
+        args: true,
+        msg: 'Username address already in use!'
+      },
+      validate: {
         notNull: {
-          args :true,
-          msg : "Username cannot be empty"
+          args: true,
+          msg: "Username cannot be empty"
         },
-        notEmpty :{
-          args :true,
-          msg : "Username cannot be empty"
+        notEmpty: {
+          args: true,
+          msg: "Username cannot be empty"
         },
       },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
+      validate: {
         notNull: {
-          args :true,
-          msg : "Password cannot be empty"
+          args: true,
+          msg: "Password cannot be empty"
         },
-        notEmpty :{
-          args :true,
-          msg : "Password cannot be empty"
+        notEmpty: {
+          args: true,
+          msg: "Password cannot be empty"
         },
-        len:{
-          args :[8,32],
-          msg : "Password must be 8 - 32 character"
+        len: {
+          args: [8, 32],
+          msg: "Password must be 8 - 32 character"
         }
       }
     },
     role: {
-      type :DataTypes.STRING,
+      type: DataTypes.STRING,
     }
   }, {
     hooks: {
       beforeCreate(instance, options) {
-      const salt = bcrypt.genSaltSync(8);
-      const hash = bcrypt.hashSync(instance.password, salt);
-      instance.password = hash
-      instance.role = 'customer'
+        const salt = bcrypt.genSaltSync(8);
+        const hash = bcrypt.hashSync(instance.password, salt);
+        instance.password = hash
+        instance.role = 'customer'
       }
     },
     sequelize,
